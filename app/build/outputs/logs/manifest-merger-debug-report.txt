@@ -1,0 +1,393 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:2:1-41:12
+MERGED from [androidx.navigation:navigation-common:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/698572ffe5b405f8efeccd3fdaaa6481/transformed/navigation-common-2.7.5/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2a5c5f1abe8c6351f8daf0c653dfbed3/transformed/navigation-runtime-2.7.5/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5a6583d4da8e9c979aa8cb4ac58b30f1/transformed/navigation-common-ktx-2.7.5/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/6dd328ce3659d15739beffe62288a1c7/transformed/navigation-runtime-ktx-2.7.5/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-compose:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2f543be91e7e5f5b970b013e3dd9044b/transformed/navigation-compose-2.7.5/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material3:material3:1.1.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3138fdf6d446323f6b18734568923ffd/transformed/material3-1.1.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2cfb5e0c2aa19ab0f44f49a27d985aee/transformed/activity-1.8.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/c29e9de7eec63eebae9811a18bea43ba/transformed/activity-ktx-1.8.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f00d46f24692073a0dd90174f28934aa/transformed/material-ripple-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/c92e558d0dd798fcfe4e5dbaf94e0d92/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/0bdbd9fd9ecf95612368d1f81140d182/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/e0f5a1541b9382a3ea70105dce27c5d9/transformed/material-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2102313d42f45b64c708147fcc3db700/transformed/animation-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/29c86df86bff52ebcc5c92e8fd687e10/transformed/animation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/16ba5d7390c0c68c60fee23bd01ad2d1/transformed/foundation-layout-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/231e053f8d90635e05cd3cec2f3cac06/transformed/foundation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/016836ad690cd6c0bf59656ebc0cc05a/transformed/ui-tooling-data-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/73b5ad34fe67c12ad5b52de998bb83ec/transformed/ui-unit-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/8f15be5ca5e7eeef069da724b229b1ac/transformed/ui-geometry-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/896248cbfdaf54f4579de523d6079694/transformed/ui-util-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/14f5a0e72d01b1da7e02b95629cb87b4/transformed/ui-text-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/0b976f10f881954e151cd87a762e6090/transformed/ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/12303ddfa917d61d3044a7dd471719e0/transformed/ui-graphics-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.activity:activity-compose:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/894e2913c0ec2a1a8443a95bf8907425/transformed/activity-compose-1.8.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/88e40054c3c07bafe8b7069092c16fc7/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ff697849d7f8d7b5dd4d3092994a456d/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/632d50dbcb7eb860c6aad385cbfad5bd/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/a204a001841103641b06623ee7ee23ed/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/e325cbaa1a9b4f0361cda843223ae487/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/16712f3d23117e36011063cb99183ab4/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/a5e7ac7a3c2472bfceb41bc2149ae83f/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7057695bfd7c5aea5402ceb1f349185a/transformed/lifecycle-runtime-compose-2.6.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ebe6fc75daa7e7a2d57aa1a29b2a16f7/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7a874a8c7c47929cbe997d86a17e5330/transformed/lifecycle-viewmodel-compose-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f05e7cfb0da7cc873b0a1ceff161d00e/transformed/ui-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/abf2803322bf3ced15c3d60d96a3691d/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7f58af120ac4ed2d2f492ef059541763/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f47f006732aac2d18f157d8afd5378dd/transformed/core-ktx-1.12.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-ktx:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3321348b172c98c1d5c72e564ac5113e/transformed/room-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3348bb4b1d60e2e5e2458271762d75b2/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/35729e1f5f99a900744c36f6f0f0945c/transformed/sqlite-2.4.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/d1aad8bee0d521413d8cb4260f7ccc4c/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/da396f649f5c9580bc97e580b527447f/transformed/runtime-saveable-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/59e19375b46f4b8c145e78b70de52fd2/transformed/runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/33ed994e5f3e169a7a89e14e04153b4d/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f45d4eb05411132ea9cf010e71f27f06/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5561034aa6b5cc9c6ca084d31c5013c1/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7318e73e01069dd2aa3d74556144943e/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+	package
+		INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:6:5-77
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:6:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:7:5-92
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:7:22-89
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:8:5-77
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:8:22-74
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:9:5-66
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:9:22-63
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:10:5-68
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:10:22-65
+application
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:12:5-39:19
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:12:5-39:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5561034aa6b5cc9c6ca084d31c5013c1/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5561034aa6b5cc9c6ca084d31c5013c1/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:18:9-35
+	android:label
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:16:9-41
+	android:roundIcon
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:17:9-54
+	tools:targetApi
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:20:9-29
+	android:icon
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:15:9-43
+	android:allowBackup
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:14:9-35
+	android:theme
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:19:9-56
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:13:9-40
+activity#com.steven.workouttimer.MainActivity
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:22:9-30:20
+	android:exported
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:24:13-36
+	android:theme
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:25:13-60
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:23:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:26:13-29:29
+action#android.intent.action.MAIN
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:27:17-69
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:27:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:28:17-77
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:28:27-74
+service#com.steven.workouttimer.service.TimerService
+ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:33:9-37:61
+	android:enabled
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:35:13-35
+	android:exported
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:36:13-37
+	android:foregroundServiceType
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:37:13-58
+	android:name
+		ADDED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml:34:13-49
+uses-sdk
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+MERGED from [androidx.navigation:navigation-common:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/698572ffe5b405f8efeccd3fdaaa6481/transformed/navigation-common-2.7.5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/698572ffe5b405f8efeccd3fdaaa6481/transformed/navigation-common-2.7.5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2a5c5f1abe8c6351f8daf0c653dfbed3/transformed/navigation-runtime-2.7.5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2a5c5f1abe8c6351f8daf0c653dfbed3/transformed/navigation-runtime-2.7.5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5a6583d4da8e9c979aa8cb4ac58b30f1/transformed/navigation-common-ktx-2.7.5/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5a6583d4da8e9c979aa8cb4ac58b30f1/transformed/navigation-common-ktx-2.7.5/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/6dd328ce3659d15739beffe62288a1c7/transformed/navigation-runtime-ktx-2.7.5/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/6dd328ce3659d15739beffe62288a1c7/transformed/navigation-runtime-ktx-2.7.5/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2f543be91e7e5f5b970b013e3dd9044b/transformed/navigation-compose-2.7.5/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.5] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2f543be91e7e5f5b970b013e3dd9044b/transformed/navigation-compose-2.7.5/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material3:material3:1.1.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3138fdf6d446323f6b18734568923ffd/transformed/material3-1.1.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3:1.1.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3138fdf6d446323f6b18734568923ffd/transformed/material3-1.1.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2cfb5e0c2aa19ab0f44f49a27d985aee/transformed/activity-1.8.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2cfb5e0c2aa19ab0f44f49a27d985aee/transformed/activity-1.8.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/c29e9de7eec63eebae9811a18bea43ba/transformed/activity-ktx-1.8.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/c29e9de7eec63eebae9811a18bea43ba/transformed/activity-ktx-1.8.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f00d46f24692073a0dd90174f28934aa/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f00d46f24692073a0dd90174f28934aa/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/c92e558d0dd798fcfe4e5dbaf94e0d92/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/c92e558d0dd798fcfe4e5dbaf94e0d92/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/0bdbd9fd9ecf95612368d1f81140d182/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/0bdbd9fd9ecf95612368d1f81140d182/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/e0f5a1541b9382a3ea70105dce27c5d9/transformed/material-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/e0f5a1541b9382a3ea70105dce27c5d9/transformed/material-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2102313d42f45b64c708147fcc3db700/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/2102313d42f45b64c708147fcc3db700/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/29c86df86bff52ebcc5c92e8fd687e10/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/29c86df86bff52ebcc5c92e8fd687e10/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/16ba5d7390c0c68c60fee23bd01ad2d1/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/16ba5d7390c0c68c60fee23bd01ad2d1/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/231e053f8d90635e05cd3cec2f3cac06/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/231e053f8d90635e05cd3cec2f3cac06/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/016836ad690cd6c0bf59656ebc0cc05a/transformed/ui-tooling-data-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/016836ad690cd6c0bf59656ebc0cc05a/transformed/ui-tooling-data-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/73b5ad34fe67c12ad5b52de998bb83ec/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/73b5ad34fe67c12ad5b52de998bb83ec/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/8f15be5ca5e7eeef069da724b229b1ac/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/8f15be5ca5e7eeef069da724b229b1ac/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/896248cbfdaf54f4579de523d6079694/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/896248cbfdaf54f4579de523d6079694/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/14f5a0e72d01b1da7e02b95629cb87b4/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/14f5a0e72d01b1da7e02b95629cb87b4/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/0b976f10f881954e151cd87a762e6090/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/0b976f10f881954e151cd87a762e6090/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/12303ddfa917d61d3044a7dd471719e0/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/12303ddfa917d61d3044a7dd471719e0/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/894e2913c0ec2a1a8443a95bf8907425/transformed/activity-compose-1.8.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/894e2913c0ec2a1a8443a95bf8907425/transformed/activity-compose-1.8.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/88e40054c3c07bafe8b7069092c16fc7/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/88e40054c3c07bafe8b7069092c16fc7/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ff697849d7f8d7b5dd4d3092994a456d/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ff697849d7f8d7b5dd4d3092994a456d/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/632d50dbcb7eb860c6aad385cbfad5bd/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/632d50dbcb7eb860c6aad385cbfad5bd/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/a204a001841103641b06623ee7ee23ed/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/a204a001841103641b06623ee7ee23ed/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/e325cbaa1a9b4f0361cda843223ae487/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/e325cbaa1a9b4f0361cda843223ae487/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/16712f3d23117e36011063cb99183ab4/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/16712f3d23117e36011063cb99183ab4/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/a5e7ac7a3c2472bfceb41bc2149ae83f/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/a5e7ac7a3c2472bfceb41bc2149ae83f/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7057695bfd7c5aea5402ceb1f349185a/transformed/lifecycle-runtime-compose-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7057695bfd7c5aea5402ceb1f349185a/transformed/lifecycle-runtime-compose-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ebe6fc75daa7e7a2d57aa1a29b2a16f7/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ebe6fc75daa7e7a2d57aa1a29b2a16f7/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7a874a8c7c47929cbe997d86a17e5330/transformed/lifecycle-viewmodel-compose-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7a874a8c7c47929cbe997d86a17e5330/transformed/lifecycle-viewmodel-compose-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f05e7cfb0da7cc873b0a1ceff161d00e/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f05e7cfb0da7cc873b0a1ceff161d00e/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/abf2803322bf3ced15c3d60d96a3691d/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/abf2803322bf3ced15c3d60d96a3691d/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7f58af120ac4ed2d2f492ef059541763/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7f58af120ac4ed2d2f492ef059541763/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f47f006732aac2d18f157d8afd5378dd/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f47f006732aac2d18f157d8afd5378dd/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3321348b172c98c1d5c72e564ac5113e/transformed/room-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3321348b172c98c1d5c72e564ac5113e/transformed/room-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3348bb4b1d60e2e5e2458271762d75b2/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3348bb4b1d60e2e5e2458271762d75b2/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/35729e1f5f99a900744c36f6f0f0945c/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/35729e1f5f99a900744c36f6f0f0945c/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/d1aad8bee0d521413d8cb4260f7ccc4c/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/d1aad8bee0d521413d8cb4260f7ccc4c/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/da396f649f5c9580bc97e580b527447f/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/da396f649f5c9580bc97e580b527447f/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/59e19375b46f4b8c145e78b70de52fd2/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/59e19375b46f4b8c145e78b70de52fd2/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/33ed994e5f3e169a7a89e14e04153b4d/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/33ed994e5f3e169a7a89e14e04153b4d/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f45d4eb05411132ea9cf010e71f27f06/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f45d4eb05411132ea9cf010e71f27f06/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5561034aa6b5cc9c6ca084d31c5013c1/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/5561034aa6b5cc9c6ca084d31c5013c1/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7318e73e01069dd2aa3d74556144943e/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/7318e73e01069dd2aa3d74556144943e/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+	android:targetSdkVersion
+		INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/stevendang/Code/AndroidProjects/StevenWorkoutTimer/app/src/main/AndroidManifest.xml
+activity#androidx.activity.ComponentActivity
+ADDED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/b82288eb5d39e1596c381aca3fdc2adc/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:24:13-63
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/891fea850cb89ae5dfdb6ea8e514e343/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/f8fc4429268b663fde97ccf1feceeddd/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/ca3bcd817811ac22df554179d21d1226/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/342a1a84238874a07c15ad3b9d537bf5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+permission#com.steven.workouttimer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+uses-permission#com.steven.workouttimer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/22921a8af02f66a6b000d05ddce58390/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.6.1] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/3d023da0cb9d15f08a51e32c53dff29f/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/stevendang/.gradle/caches/9.0-milestone-1/transforms/cf66cf84743a92d445f58fcfd5e81609/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92

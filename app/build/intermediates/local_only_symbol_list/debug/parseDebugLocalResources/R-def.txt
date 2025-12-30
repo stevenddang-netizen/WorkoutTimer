@@ -1,0 +1,14 @@
+R_DEF: Internal format may change without notice
+local
+color ic_launcher_background
+drawable ic_launcher_foreground
+drawable ic_pause
+drawable ic_play
+drawable ic_stop
+drawable ic_timer
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string timer_notification_channel
+string timer_notification_channel_desc
+style Theme.StevenWorkoutTimer
