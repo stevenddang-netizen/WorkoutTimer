@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.steven.workouttimer.data.preferences.ThemeMode
+import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
+import com.steven.workouttimer.ui.theme.GlassDialogBackground
 
 @Composable
 fun SettingsDialog(
@@ -24,8 +26,11 @@ fun SettingsDialog(
     onThemeModeChange: (ThemeMode) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val isGlassmorphic = LocalIsGlassmorphic.current
+
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = if (isGlassmorphic) GlassDialogBackground else MaterialTheme.colorScheme.surface,
         title = { Text("Settings") },
         text = {
             Column {

@@ -1,5 +1,6 @@
 package com.steven.workouttimer.ui.screens.create
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -41,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.steven.workouttimer.data.db.AudioType
 import com.steven.workouttimer.data.db.TimerMode
+import com.steven.workouttimer.ui.theme.GlassDialogBackground
 import com.steven.workouttimer.ui.theme.GlassSurface
 import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
 import com.steven.workouttimer.util.TimeUtils
@@ -56,9 +61,10 @@ fun CreateTimerScreen(
     val isGlassmorphic = LocalIsGlassmorphic.current
     val textColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onBackground
     val subtextColor = if (isGlassmorphic) Color.White.copy(alpha = 0.5f) else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+    var showDeleteConfirmation by remember { mutableStateOf(false) }
 
-    LaunchedEffect(uiState.isSaved) {
-        if (uiState.isSaved) {
+    LaunchedEffect(uiState.isSaved, uiState.isDeleted) {
+        if (uiState.isSaved || uiState.isDeleted) {
             onNavigateBack()
         }
     }
@@ -77,6 +83,14 @@ fun CreateTimerScreen(
                     }
                 },
                 actions = {
+                    if (isEditing) {
+                        IconButton(onClick = { showDeleteConfirmation = true }) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Delete"
+                            )
+                        }
+                    }
                     IconButton(onClick = { viewModel.saveTimer() }) {
                         Icon(
                             imageVector = Icons.Default.Check,
@@ -130,7 +144,8 @@ fun CreateTimerScreen(
                     )
                     ExposedDropdownMenu(
                         expanded = modeExpanded,
-                        onDismissRequest = { modeExpanded = false }
+                        onDismissRequest = { modeExpanded = false },
+                        modifier = if (isGlassmorphic) Modifier.background(GlassDialogBackground) else Modifier
                     ) {
                         DropdownMenuItem(
                             text = { Text("Weightlift Mode") },
@@ -198,7 +213,8 @@ fun CreateTimerScreen(
                         )
                         ExposedDropdownMenu(
                             expanded = expanded,
-                            onDismissRequest = { expanded = false }
+                            onDismissRequest = { expanded = false },
+                            modifier = if (isGlassmorphic) Modifier.background(GlassDialogBackground) else Modifier
                         ) {
                             minuteOptions.forEach { minutes ->
                                 DropdownMenuItem(
@@ -247,7 +263,8 @@ fun CreateTimerScreen(
                         )
                         ExposedDropdownMenu(
                             expanded = holdExpanded,
-                            onDismissRequest = { holdExpanded = false }
+                            onDismissRequest = { holdExpanded = false },
+                            modifier = if (isGlassmorphic) Modifier.background(GlassDialogBackground) else Modifier
                         ) {
                             holdOptions.forEach { seconds ->
                                 DropdownMenuItem(
@@ -294,7 +311,8 @@ fun CreateTimerScreen(
                         )
                         ExposedDropdownMenu(
                             expanded = restExpanded,
-                            onDismissRequest = { restExpanded = false }
+                            onDismissRequest = { restExpanded = false },
+                            modifier = if (isGlassmorphic) Modifier.background(GlassDialogBackground) else Modifier
                         ) {
                             restOptions.forEach { seconds ->
                                 DropdownMenuItem(
@@ -341,7 +359,8 @@ fun CreateTimerScreen(
                         )
                         ExposedDropdownMenu(
                             expanded = repsExpanded,
-                            onDismissRequest = { repsExpanded = false }
+                            onDismissRequest = { repsExpanded = false },
+                            modifier = if (isGlassmorphic) Modifier.background(GlassDialogBackground) else Modifier
                         ) {
                             repsOptions.forEach { reps ->
                                 DropdownMenuItem(
@@ -389,7 +408,8 @@ fun CreateTimerScreen(
                     )
                     ExposedDropdownMenu(
                         expanded = initialCountdownExpanded,
-                        onDismissRequest = { initialCountdownExpanded = false }
+                        onDismissRequest = { initialCountdownExpanded = false },
+                        modifier = if (isGlassmorphic) Modifier.background(GlassDialogBackground) else Modifier
                     ) {
                         initialCountdownOptions.forEach { seconds ->
                             DropdownMenuItem(
@@ -512,5 +532,30 @@ fun CreateTimerScreen(
                 color = subtextColor
             )
         }
+    }
+
+    // Delete confirmation dialog
+    if (showDeleteConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showDeleteConfirmation = false },
+            containerColor = if (isGlassmorphic) GlassDialogBackground else MaterialTheme.colorScheme.surface,
+            title = { Text("Delete Timer") },
+            text = { Text("Are you sure you want to delete \"${uiState.name}\"? This action cannot be undone.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteTimer()
+                        showDeleteConfirmation = false
+                    }
+                ) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteConfirmation = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
     }
 }

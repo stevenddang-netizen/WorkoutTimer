@@ -36,9 +36,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.steven.workouttimer.data.db.TimerEntity
 import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
 import com.steven.workouttimer.ui.theme.GlassSurface
+import com.steven.workouttimer.ui.theme.GlassDialogBackground
 import com.steven.workouttimer.data.preferences.ThemeMode
 import com.steven.workouttimer.service.TimerState
 import com.steven.workouttimer.ui.components.RunningTimerBanner
@@ -61,7 +61,6 @@ fun HomeScreen(
     onStartTimer: (Long) -> Unit
 ) {
     val timers by viewModel.timers.collectAsState()
-    var timerToDelete by remember { mutableStateOf<TimerEntity?>(null) }
     var showSettings by remember { mutableStateOf(false) }
     var showStopConfirmation by remember { mutableStateOf(false) }
     var showDeleteConfirmation by remember { mutableStateOf(false) }
@@ -105,15 +104,31 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            // Running timer banner
+            // Running timer section
             if (runningTimerState != null && runningTimerState.isRunning) {
+                Text(
+                    text = "Running",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = if (isGlassmorphic) Color.White.copy(alpha = 0.7f) else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 4.dp)
+                )
                 RunningTimerBanner(
                     timerState = runningTimerState,
                     onTap = onRunningTimerTap,
                     onPlayPause = onRunningTimerPlayPause,
                     onStop = { showStopConfirmation = true },
                     onDelete = { showDeleteConfirmation = true },
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+            }
+
+            // Saved timers section header
+            if (timers.isNotEmpty()) {
+                Text(
+                    text = "Saved Timers",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = if (isGlassmorphic) Color.White.copy(alpha = 0.7f) else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 4.dp)
                 )
             }
 
@@ -131,7 +146,7 @@ fun HomeScreen(
                     contentPadding = PaddingValues(
                         start = 16.dp,
                         end = 16.dp,
-                        top = if (runningTimerState?.isRunning == true) 0.dp else 16.dp,
+                        top = 8.dp,
                         bottom = 16.dp
                     ),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -143,37 +158,12 @@ fun HomeScreen(
                         TimerCard(
                             timer = timer,
                             onPlayClick = { onStartTimer(timer.id) },
-                            onEditClick = { onEditTimer(timer.id) },
-                            onDeleteClick = { timerToDelete = timer }
+                            onEditClick = { onEditTimer(timer.id) }
                         )
                     }
                 }
             }
         }
-    }
-
-    // Delete confirmation dialog
-    timerToDelete?.let { timer ->
-        AlertDialog(
-            onDismissRequest = { timerToDelete = null },
-            title = { Text("Delete Timer") },
-            text = { Text("Are you sure you want to delete \"${timer.name}\"?") },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        viewModel.deleteTimer(timer)
-                        timerToDelete = null
-                    }
-                ) {
-                    Text("Delete", color = MaterialTheme.colorScheme.error)
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { timerToDelete = null }) {
-                    Text("Cancel")
-                }
-            }
-        )
     }
 
     // Settings dialog
@@ -189,6 +179,7 @@ fun HomeScreen(
     if (showStopConfirmation) {
         AlertDialog(
             onDismissRequest = { showStopConfirmation = false },
+            containerColor = if (isGlassmorphic) GlassDialogBackground else MaterialTheme.colorScheme.surface,
             title = { Text("Stop Timer") },
             text = { Text("Are you sure you want to stop this workout?") },
             confirmButton = {
@@ -213,6 +204,7 @@ fun HomeScreen(
     if (showDeleteConfirmation && runningTimerState != null) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirmation = false },
+            containerColor = if (isGlassmorphic) GlassDialogBackground else MaterialTheme.colorScheme.surface,
             title = { Text("Delete Timer") },
             text = { Text("Are you sure you want to stop and delete \"${runningTimerState.timerName}\"? This action cannot be undone.") },
             confirmButton = {

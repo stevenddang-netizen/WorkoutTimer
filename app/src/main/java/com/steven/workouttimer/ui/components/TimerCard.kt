@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.VolumeOff
@@ -40,7 +39,6 @@ fun TimerCard(
     timer: TimerEntity,
     onPlayClick: () -> Unit,
     onEditClick: () -> Unit,
-    onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isGlassmorphic = LocalIsGlassmorphic.current
@@ -116,14 +114,6 @@ fun TimerCard(
                         imageVector = Icons.Default.Edit,
                         contentDescription = "Edit timer",
                         tint = if (isGlassmorphic) Color.White.copy(alpha = 0.8f) else MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-                IconButton(onClick = onDeleteClick) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete timer",
-                        tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(24.dp)
                     )
                 }

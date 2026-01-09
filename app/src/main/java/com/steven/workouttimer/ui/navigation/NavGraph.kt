@@ -12,9 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -32,7 +30,6 @@ import com.steven.workouttimer.ui.screens.home.HomeScreen
 import com.steven.workouttimer.ui.screens.home.HomeViewModel
 import com.steven.workouttimer.ui.screens.timer.TimerScreen
 import com.steven.workouttimer.ui.screens.timer.TimerViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 
 sealed class Screen(val route: String) {
     data object Home : Screen("home")
@@ -58,7 +55,6 @@ fun NavGraph(
     val repository = app.container.timerRepository
     val themePreferences = app.container.themePreferences
     val currentThemeMode by themePreferences.themeMode.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
 
     // Global timer service binding for showing running timer on home screen
     var globalTimerService by remember { mutableStateOf<TimerService?>(null) }
@@ -81,11 +77,24 @@ fun NavGraph(
         }
     }
 
-    // Try to bind to existing service (if running)
-    DisposableEffect(Unit) {
-        val intent = Intent(context, TimerService::class.java)
-        context.bindService(intent, globalConnection, 0) // Don't auto-create
+    // Track current destination to re-bind when returning to Home
+    val currentDestination = navController.currentBackStackEntryFlow.collectAsState(initial = null)
 
+    // Try to bind to existing service (if running)
+    // Re-attempt binding when returning to Home screen
+    DisposableEffect(currentDestination.value?.destination?.route) {
+        if (!globalBound) {
+            val intent = Intent(context, TimerService::class.java)
+            context.bindService(intent, globalConnection, 0) // Don't auto-create
+        }
+
+        onDispose {
+            // Only unbind when NavGraph is truly disposed, not on route changes
+        }
+    }
+
+    // Cleanup when NavGraph is disposed
+    DisposableEffect(Unit) {
         onDispose {
             if (globalBound) {
                 context.unbindService(globalConnection)
@@ -122,11 +131,7 @@ fun NavGraph(
                     globalTimerService?.stopTimer()
                 },
                 onRunningTimerDelete = {
-                    val timerId = runningTimerState.timerId
                     globalTimerService?.stopTimer()
-                    coroutineScope.launch {
-                        repository.deleteTimerById(timerId)
-                    }
                 },
                 onCreateTimer = {
                     navController.navigate(Screen.CreateTimer.createRoute())

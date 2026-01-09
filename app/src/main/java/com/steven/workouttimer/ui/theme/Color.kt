@@ -40,3 +40,4 @@ val GlassPrimary = Color(0xFF7ECFA0)           // Soft mint green
 val GlassPrimaryContainer = Color(0x4D7ECFA0)  // 30% mint translucent
 val GlassOnSurface = Color(0xFFE8E8E8)         // Light grey text
 val GlassOnSurfaceVariant = Color(0xFFB0B0B0)  // Muted grey text
+val GlassDialogBackground = Color(0xE6263D32)  // 90% opaque dark green for dialogs

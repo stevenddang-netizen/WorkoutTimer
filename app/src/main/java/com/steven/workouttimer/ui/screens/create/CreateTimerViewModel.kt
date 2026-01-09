@@ -28,6 +28,7 @@ data class CreateTimerUiState(
     val totalRepetitions: Int = 6,
     val isLoading: Boolean = false,
     val isSaved: Boolean = false,
+    val isDeleted: Boolean = false,
     val nameError: String? = null
 )
 
@@ -144,6 +145,14 @@ class CreateTimerViewModel(
             }
 
             _uiState.update { it.copy(isSaved = true) }
+        }
+    }
+
+    fun deleteTimer() {
+        val id = _uiState.value.id ?: return
+        viewModelScope.launch {
+            repository.deleteTimerById(id)
+            _uiState.update { it.copy(isDeleted = true) }
         }
     }
 
