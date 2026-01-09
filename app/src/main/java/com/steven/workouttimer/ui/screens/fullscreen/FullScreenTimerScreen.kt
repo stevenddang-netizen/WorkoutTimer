@@ -34,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
@@ -43,6 +44,10 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.steven.workouttimer.service.TimerState
 import com.steven.workouttimer.ui.components.ControlButtons
 import com.steven.workouttimer.ui.components.TimerDisplay
+import com.steven.workouttimer.ui.theme.GlassCardBackground
+import com.steven.workouttimer.ui.theme.GlassGradientEnd
+import com.steven.workouttimer.ui.theme.GlassGradientStart
+import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 
@@ -56,6 +61,7 @@ fun FullScreenTimerScreen(
     val timerState by timerStateFlow.collectAsState()
     var showControls by remember { mutableStateOf(true) }
     val view = LocalView.current
+    val isGlassmorphic = LocalIsGlassmorphic.current
 
     // Auto-hide controls after 3 seconds
     LaunchedEffect(showControls) {
@@ -98,10 +104,20 @@ fun FullScreenTimerScreen(
         }
     }
 
+    val backgroundModifier = if (isGlassmorphic) {
+        Modifier.background(
+            Brush.verticalGradient(
+                colors = listOf(GlassGradientStart, GlassGradientEnd)
+            )
+        )
+    } else {
+        Modifier.background(Color.Black)
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
+            .then(backgroundModifier)
             .clickable(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() }
@@ -135,7 +151,16 @@ fun FullScreenTimerScreen(
                 totalSeconds = timerState.totalSeconds,
                 currentMinute = timerState.currentMinute,
                 totalMinutes = timerState.totalMinutes,
-                isFullScreen = true
+                isFullScreen = true,
+                isInInitialCountdown = timerState.isInInitialCountdown,
+                initialCountdownRemaining = timerState.initialCountdownRemaining,
+                timerMode = timerState.timerMode,
+                currentRepetition = timerState.currentRepetition,
+                totalRepetitions = timerState.totalRepetitions,
+                secondInRep = timerState.secondInRep,
+                holdSeconds = timerState.holdSeconds,
+                restSeconds = timerState.restSeconds,
+                isHolding = timerState.isHolding
             )
 
             Spacer(modifier = Modifier.height(48.dp))
@@ -169,7 +194,7 @@ fun FullScreenTimerScreen(
                 onClick = onExitFullScreen,
                 modifier = Modifier.size(48.dp),
                 colors = IconButtonDefaults.filledIconButtonColors(
-                    containerColor = Color.White.copy(alpha = 0.2f)
+                    containerColor = if (isGlassmorphic) GlassCardBackground else Color.White.copy(alpha = 0.2f)
                 )
             ) {
                 Icon(

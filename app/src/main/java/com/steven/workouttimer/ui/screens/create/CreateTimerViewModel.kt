@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.steven.workouttimer.data.db.AudioType
 import com.steven.workouttimer.data.db.TimerEntity
+import com.steven.workouttimer.data.db.TimerMode
 import com.steven.workouttimer.data.repository.TimerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,10 +16,16 @@ import kotlinx.coroutines.launch
 data class CreateTimerUiState(
     val id: Long? = null,
     val name: String = "",
+    val timerMode: TimerMode = TimerMode.WEIGHTLIFT,
     val totalMinutes: Int = 10,
     val audioEnabled: Boolean = true,
     val audioType: AudioType = AudioType.BEEP,
     val countdownSeconds: Int = 3,
+    val initialCountdownSeconds: Int = 0,
+    // Climbing mode specific
+    val holdSeconds: Int = 7,
+    val restSeconds: Int = 3,
+    val totalRepetitions: Int = 6,
     val isLoading: Boolean = false,
     val isSaved: Boolean = false,
     val nameError: String? = null
@@ -46,10 +53,15 @@ class CreateTimerViewModel(
                     it.copy(
                         id = timer.id,
                         name = timer.name,
+                        timerMode = TimerMode.valueOf(timer.timerMode),
                         totalMinutes = timer.totalMinutes,
                         audioEnabled = timer.audioEnabled,
                         audioType = AudioType.valueOf(timer.audioType),
                         countdownSeconds = timer.countdownSeconds,
+                        initialCountdownSeconds = timer.initialCountdownSeconds,
+                        holdSeconds = timer.holdSeconds,
+                        restSeconds = timer.restSeconds,
+                        totalRepetitions = timer.totalRepetitions,
                         isLoading = false
                     )
                 }
@@ -67,7 +79,7 @@ class CreateTimerViewModel(
     }
 
     fun updateTotalMinutes(minutes: Int) {
-        _uiState.update { it.copy(totalMinutes = minutes.coerceIn(5, 120)) }
+        _uiState.update { it.copy(totalMinutes = minutes.coerceIn(2, 120)) }
     }
 
     fun updateAudioEnabled(enabled: Boolean) {
@@ -82,6 +94,26 @@ class CreateTimerViewModel(
         _uiState.update { it.copy(countdownSeconds = seconds.coerceIn(1, 10)) }
     }
 
+    fun updateInitialCountdownSeconds(seconds: Int) {
+        _uiState.update { it.copy(initialCountdownSeconds = seconds.coerceIn(0, 30)) }
+    }
+
+    fun updateTimerMode(mode: TimerMode) {
+        _uiState.update { it.copy(timerMode = mode) }
+    }
+
+    fun updateHoldSeconds(seconds: Int) {
+        _uiState.update { it.copy(holdSeconds = seconds.coerceIn(1, 60)) }
+    }
+
+    fun updateRestSeconds(seconds: Int) {
+        _uiState.update { it.copy(restSeconds = seconds.coerceIn(1, 60)) }
+    }
+
+    fun updateTotalRepetitions(reps: Int) {
+        _uiState.update { it.copy(totalRepetitions = reps.coerceIn(1, 100)) }
+    }
+
     fun saveTimer() {
         val state = _uiState.value
 
@@ -94,10 +126,15 @@ class CreateTimerViewModel(
             val timer = TimerEntity(
                 id = state.id ?: 0,
                 name = state.name.trim(),
+                timerMode = state.timerMode.name,
                 totalMinutes = state.totalMinutes,
                 audioEnabled = state.audioEnabled,
                 audioType = state.audioType.name,
-                countdownSeconds = state.countdownSeconds
+                countdownSeconds = state.countdownSeconds,
+                initialCountdownSeconds = state.initialCountdownSeconds,
+                holdSeconds = state.holdSeconds,
+                restSeconds = state.restSeconds,
+                totalRepetitions = state.totalRepetitions
             )
 
             if (state.id != null) {

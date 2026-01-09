@@ -52,6 +52,7 @@ fun SettingsDialog(
                                 ThemeMode.SYSTEM -> "System default"
                                 ThemeMode.LIGHT -> "Light"
                                 ThemeMode.DARK -> "Dark"
+                                ThemeMode.GLASSMORPHIC -> "Glassmorphic"
                             },
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(start = 8.dp)

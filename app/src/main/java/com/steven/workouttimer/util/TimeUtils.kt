@@ -22,13 +22,16 @@ object TimeUtils {
         return if (minutes >= 60) {
             val hours = minutes / 60
             val remainingMinutes = minutes % 60
+            val hourLabel = if (hours == 1) "hour" else "hours"
             if (remainingMinutes > 0) {
-                "${hours}h ${remainingMinutes}m"
+                val minLabel = if (remainingMinutes == 1) "minute" else "minutes"
+                "$hours $hourLabel $remainingMinutes $minLabel"
             } else {
-                "${hours}h"
+                "$hours $hourLabel"
             }
         } else {
-            "${minutes}m"
+            val minLabel = if (minutes == 1) "minute" else "minutes"
+            "$minutes $minLabel"
         }
     }
 }

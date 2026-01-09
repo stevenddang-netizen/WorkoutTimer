@@ -28,3 +28,15 @@ val OnBackground = Color.White
 val OnBackgroundLight = Color(0xFF212121)
 val OnSurface = Color.White
 val OnSurfaceLight = Color(0xFF212121)
+
+// Glassmorphic theme colors
+val GlassGradientStart = Color(0xFF2D5A45)     // Deep forest green
+val GlassGradientEnd = Color(0xFF3A3A3A)       // Dark grey
+val GlassSurface = Color(0x33FFFFFF)           // 20% white translucent
+val GlassSurfaceVariant = Color(0x26FFFFFF)    // 15% white translucent
+val GlassCardBackground = Color(0x40FFFFFF)    // 25% white translucent
+val GlassBorder = Color(0x4DFFFFFF)            // 30% white for borders
+val GlassPrimary = Color(0xFF7ECFA0)           // Soft mint green
+val GlassPrimaryContainer = Color(0x4D7ECFA0)  // 30% mint translucent
+val GlassOnSurface = Color(0xFFE8E8E8)         // Light grey text
+val GlassOnSurfaceVariant = Color(0xFFB0B0B0)  // Muted grey text

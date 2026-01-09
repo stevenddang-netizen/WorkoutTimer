@@ -12,13 +12,16 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.steven.workouttimer.ui.theme.GlassCardBackground
+import com.steven.workouttimer.ui.theme.GlassPrimary
+import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
 
 @Composable
 fun ControlButtons(
@@ -29,6 +32,8 @@ fun ControlButtons(
     modifier: Modifier = Modifier,
     showFullScreenButton: Boolean = true
 ) {
+    val isGlassmorphic = LocalIsGlassmorphic.current
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.Center,
@@ -39,7 +44,8 @@ fun ControlButtons(
             onClick = onStopClick,
             modifier = Modifier.size(64.dp),
             colors = IconButtonDefaults.filledIconButtonColors(
-                containerColor = MaterialTheme.colorScheme.error
+                containerColor = if (isGlassmorphic) GlassCardBackground else MaterialTheme.colorScheme.error,
+                contentColor = if (isGlassmorphic) Color(0xFFF44336) else Color.White
             )
         ) {
             Icon(
@@ -56,7 +62,8 @@ fun ControlButtons(
             onClick = onPlayPauseClick,
             modifier = Modifier.size(80.dp),
             colors = IconButtonDefaults.filledIconButtonColors(
-                containerColor = MaterialTheme.colorScheme.primary
+                containerColor = if (isGlassmorphic) GlassCardBackground else MaterialTheme.colorScheme.primary,
+                contentColor = if (isGlassmorphic) GlassPrimary else Color.White
             )
         ) {
             Icon(
@@ -74,7 +81,8 @@ fun ControlButtons(
                 onClick = onFullScreenClick,
                 modifier = Modifier.size(64.dp),
                 colors = IconButtonDefaults.filledIconButtonColors(
-                    containerColor = MaterialTheme.colorScheme.secondary
+                    containerColor = if (isGlassmorphic) GlassCardBackground else MaterialTheme.colorScheme.secondary,
+                    contentColor = if (isGlassmorphic) Color.White else Color.White
                 )
             ) {
                 Icon(

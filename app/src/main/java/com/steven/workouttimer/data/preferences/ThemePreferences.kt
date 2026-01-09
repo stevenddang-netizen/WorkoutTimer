@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.asStateFlow
 enum class ThemeMode {
     SYSTEM,
     LIGHT,
-    DARK
+    DARK,
+    GLASSMORPHIC
 }
 
 class ThemePreferences(context: Context) {

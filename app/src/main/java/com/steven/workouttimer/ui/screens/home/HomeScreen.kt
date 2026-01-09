@@ -33,9 +33,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.steven.workouttimer.data.db.TimerEntity
+import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
+import com.steven.workouttimer.ui.theme.GlassSurface
 import com.steven.workouttimer.data.preferences.ThemeMode
 import com.steven.workouttimer.service.TimerState
 import com.steven.workouttimer.ui.components.RunningTimerBanner
@@ -52,6 +55,7 @@ fun HomeScreen(
     onRunningTimerTap: () -> Unit,
     onRunningTimerPlayPause: () -> Unit,
     onRunningTimerStop: () -> Unit,
+    onRunningTimerDelete: () -> Unit,
     onCreateTimer: () -> Unit,
     onEditTimer: (Long) -> Unit,
     onStartTimer: (Long) -> Unit
@@ -60,8 +64,11 @@ fun HomeScreen(
     var timerToDelete by remember { mutableStateOf<TimerEntity?>(null) }
     var showSettings by remember { mutableStateOf(false) }
     var showStopConfirmation by remember { mutableStateOf(false) }
+    var showDeleteConfirmation by remember { mutableStateOf(false) }
+    val isGlassmorphic = LocalIsGlassmorphic.current
 
     Scaffold(
+        containerColor = if (isGlassmorphic) Color.Transparent else MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { Text("Workout Timers") },
@@ -74,15 +81,17 @@ fun HomeScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    containerColor = if (isGlassmorphic) GlassSurface else MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer,
+                    actionIconContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer
                 )
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onCreateTimer,
-                containerColor = MaterialTheme.colorScheme.primary
+                containerColor = if (isGlassmorphic) GlassSurface else MaterialTheme.colorScheme.primary,
+                contentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimary
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -103,6 +112,7 @@ fun HomeScreen(
                     onTap = onRunningTimerTap,
                     onPlayPause = onRunningTimerPlayPause,
                     onStop = { showStopConfirmation = true },
+                    onDelete = { showDeleteConfirmation = true },
                     modifier = Modifier.padding(16.dp)
                 )
             }
@@ -194,6 +204,30 @@ fun HomeScreen(
             dismissButton = {
                 TextButton(onClick = { showStopConfirmation = false }) {
                     Text("Continue")
+                }
+            }
+        )
+    }
+
+    // Delete running timer confirmation dialog
+    if (showDeleteConfirmation && runningTimerState != null) {
+        AlertDialog(
+            onDismissRequest = { showDeleteConfirmation = false },
+            title = { Text("Delete Timer") },
+            text = { Text("Are you sure you want to stop and delete \"${runningTimerState.timerName}\"? This action cannot be undone.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        onRunningTimerDelete()
+                        showDeleteConfirmation = false
+                    }
+                ) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteConfirmation = false }) {
+                    Text("Cancel")
                 }
             }
         )

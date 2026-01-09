@@ -14,6 +14,7 @@ import com.steven.workouttimer.R
 import com.steven.workouttimer.WorkoutTimerApp
 import com.steven.workouttimer.audio.AudioNotificationManager
 import com.steven.workouttimer.data.db.AudioType
+import com.steven.workouttimer.data.db.TimerMode
 import com.steven.workouttimer.util.TimeUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +29,7 @@ import kotlinx.coroutines.launch
 data class TimerState(
     val timerId: Long = 0,
     val timerName: String = "",
+    val timerMode: TimerMode = TimerMode.WEIGHTLIFT,
     val isRunning: Boolean = false,
     val isPaused: Boolean = false,
     val currentSecond: Int = 0,
@@ -37,7 +39,17 @@ data class TimerState(
     val audioEnabled: Boolean = true,
     val audioType: AudioType = AudioType.BEEP,
     val countdownSeconds: Int = 3,
-    val isComplete: Boolean = false
+    val initialCountdownSeconds: Int = 0,
+    val initialCountdownRemaining: Int = 0,
+    val isInInitialCountdown: Boolean = false,
+    val isComplete: Boolean = false,
+    // Climbing mode specific
+    val holdSeconds: Int = 7,
+    val restSeconds: Int = 3,
+    val totalRepetitions: Int = 6,
+    val currentRepetition: Int = 0,
+    val secondInRep: Int = 0,
+    val isHolding: Boolean = true  // true = hold phase, false = rest phase
 )
 
 class TimerService : Service() {
@@ -101,16 +113,29 @@ class TimerService : Service() {
     fun startTimer(
         timerId: Long,
         timerName: String,
+        timerMode: TimerMode,
         totalMinutes: Int,
         audioEnabled: Boolean,
         audioType: AudioType,
-        countdownSeconds: Int
+        countdownSeconds: Int,
+        initialCountdownSeconds: Int = 0,
+        // Climbing mode parameters
+        holdSeconds: Int = 7,
+        restSeconds: Int = 3,
+        totalRepetitions: Int = 6
     ) {
-        val totalSeconds = totalMinutes * 60
+        val hasInitialCountdown = initialCountdownSeconds > 0
+        val repetitionSeconds = holdSeconds + restSeconds
+
+        val totalSeconds = when (timerMode) {
+            TimerMode.WEIGHTLIFT -> totalMinutes * 60
+            TimerMode.CLIMBING -> repetitionSeconds * totalRepetitions
+        }
 
         _timerState.value = TimerState(
             timerId = timerId,
             timerName = timerName,
+            timerMode = timerMode,
             isRunning = true,
             isPaused = false,
             currentSecond = 0,
@@ -120,14 +145,67 @@ class TimerService : Service() {
             audioEnabled = audioEnabled,
             audioType = audioType,
             countdownSeconds = countdownSeconds,
-            isComplete = false
+            initialCountdownSeconds = initialCountdownSeconds,
+            initialCountdownRemaining = initialCountdownSeconds,
+            isInInitialCountdown = hasInitialCountdown,
+            isComplete = false,
+            holdSeconds = holdSeconds,
+            restSeconds = restSeconds,
+            totalRepetitions = totalRepetitions,
+            currentRepetition = 0,
+            secondInRep = 0,
+            isHolding = true
         )
 
         startForeground(NOTIFICATION_ID, createNotification())
-        startCountdown()
+        if (hasInitialCountdown) {
+            startInitialCountdown()
+        } else {
+            when (timerMode) {
+                TimerMode.WEIGHTLIFT -> startWorkoutCountdown()
+                TimerMode.CLIMBING -> startClimbingCountdown()
+            }
+        }
     }
 
-    private fun startCountdown() {
+    private fun startInitialCountdown() {
+        timerJob?.cancel()
+        timerJob = serviceScope.launch {
+            while (_timerState.value.initialCountdownRemaining > 0) {
+                if (!_timerState.value.isPaused) {
+                    val state = _timerState.value
+                    val remaining = state.initialCountdownRemaining
+
+                    // Play countdown audio only when within the configured countdown threshold
+                    if (state.audioEnabled && remaining <= state.countdownSeconds) {
+                        playAudioNotification(state.audioType, remaining, state.countdownSeconds)
+                    }
+
+                    updateNotification()
+                    delay(1000)
+
+                    _timerState.value = state.copy(
+                        initialCountdownRemaining = remaining - 1
+                    )
+                } else {
+                    delay(1000)
+                }
+            }
+
+            // Initial countdown complete, start the workout
+            val currentState = _timerState.value
+            _timerState.value = currentState.copy(
+                isInInitialCountdown = false
+            )
+            audioManager?.playDoubleBeep()
+            when (currentState.timerMode) {
+                TimerMode.WEIGHTLIFT -> startWorkoutCountdown()
+                TimerMode.CLIMBING -> startClimbingCountdown()
+            }
+        }
+    }
+
+    private fun startWorkoutCountdown() {
         timerJob?.cancel()
         timerJob = serviceScope.launch {
             while (_timerState.value.currentSecond < _timerState.value.totalSeconds) {
@@ -141,7 +219,7 @@ class TimerService : Service() {
                     if (state.audioEnabled) {
                         val secondsUntilNextMinute = 60 - secondsInCurrentMinute
                         if (secondsUntilNextMinute <= state.countdownSeconds && secondsUntilNextMinute > 0) {
-                            playAudioNotification(state.audioType, secondsUntilNextMinute)
+                            playAudioNotification(state.audioType, secondsUntilNextMinute, state.countdownSeconds)
                         }
                         // Play at the start of each minute (except first)
                         if (secondsInCurrentMinute == 0 && currentMinute > 0) {
@@ -170,9 +248,69 @@ class TimerService : Service() {
         }
     }
 
-    private fun playAudioNotification(audioType: AudioType, secondsRemaining: Int) {
+    private fun startClimbingCountdown() {
+        timerJob?.cancel()
+        timerJob = serviceScope.launch {
+            while (_timerState.value.currentRepetition < _timerState.value.totalRepetitions) {
+                if (!_timerState.value.isPaused) {
+                    val state = _timerState.value
+                    val secondInRep = state.secondInRep
+                    val isHolding = secondInRep < state.holdSeconds
+                    val repetitionSeconds = state.holdSeconds + state.restSeconds
+
+                    // Calculate time remaining in current phase
+                    val timeInPhase = if (isHolding) {
+                        secondInRep
+                    } else {
+                        secondInRep - state.holdSeconds
+                    }
+                    val phaseLength = if (isHolding) state.holdSeconds else state.restSeconds
+                    val secondsUntilNextPhase = phaseLength - timeInPhase
+
+                    // Play audio notifications
+                    if (state.audioEnabled) {
+                        // Countdown before phase change (only during rest/break phase, not hold)
+                        if (!isHolding && secondsUntilNextPhase <= state.countdownSeconds && secondsUntilNextPhase > 0) {
+                            playAudioNotification(state.audioType, secondsUntilNextPhase, state.countdownSeconds)
+                        }
+                        // Announce phase change
+                        if (secondInRep == 0 && state.currentRepetition > 0) {
+                            audioManager?.playDoubleBeep()
+                        }
+                        if (secondInRep == state.holdSeconds && state.restSeconds > 0) {
+                            audioManager?.speakText("Rest")
+                        }
+                    }
+
+                    val nextSecondInRep = secondInRep + 1
+                    val repComplete = nextSecondInRep >= repetitionSeconds
+
+                    _timerState.value = state.copy(
+                        currentSecond = state.currentSecond + 1,
+                        secondInRep = if (repComplete) 0 else nextSecondInRep,
+                        currentRepetition = if (repComplete) state.currentRepetition + 1 else state.currentRepetition,
+                        isHolding = if (repComplete) true else nextSecondInRep < state.holdSeconds
+                    )
+
+                    updateNotification()
+                }
+                delay(1000)
+            }
+
+            // Climbing workout complete
+            _timerState.value = _timerState.value.copy(
+                isRunning = false,
+                isComplete = true
+            )
+            audioManager?.speakText("Climbing workout complete!")
+            stopForeground(STOP_FOREGROUND_REMOVE)
+            stopSelf()
+        }
+    }
+
+    private fun playAudioNotification(audioType: AudioType, secondsRemaining: Int, maxCountdownSeconds: Int) {
         when (audioType) {
-            AudioType.BEEP -> audioManager?.playBeep()
+            AudioType.BEEP -> audioManager?.playCountdownBeep(secondsRemaining, maxCountdownSeconds)
             AudioType.VOICE -> audioManager?.speakNumber(secondsRemaining)
         }
     }
@@ -183,8 +321,21 @@ class TimerService : Service() {
     }
 
     fun resumeTimer() {
-        _timerState.value = _timerState.value.copy(isPaused = false)
+        val state = _timerState.value
+        _timerState.value = state.copy(isPaused = false)
         updateNotification()
+
+        // Restart the appropriate countdown if job was cancelled
+        if (timerJob?.isActive != true) {
+            if (state.isInInitialCountdown) {
+                startInitialCountdown()
+            } else {
+                when (state.timerMode) {
+                    TimerMode.WEIGHTLIFT -> startWorkoutCountdown()
+                    TimerMode.CLIMBING -> startClimbingCountdown()
+                }
+            }
+        }
     }
 
     fun stopTimer() {
@@ -224,14 +375,36 @@ class TimerService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val remainingSeconds = state.totalSeconds - state.currentSecond
-        val timeDisplay = TimeUtils.formatTimeWithHours(remainingSeconds)
-        val minuteInfo = "Minute ${state.currentMinute + 1}/${state.totalMinutes}"
-
-        val contentText = if (state.isPaused) {
-            "Paused • $timeDisplay remaining"
-        } else {
-            "$minuteInfo • $timeDisplay remaining"
+        val contentText = when {
+            state.isInInitialCountdown -> {
+                if (state.isPaused) {
+                    "Paused • Get ready: ${state.initialCountdownRemaining}s"
+                } else {
+                    "Get ready: ${state.initialCountdownRemaining}s"
+                }
+            }
+            state.isPaused -> {
+                val remainingSeconds = state.totalSeconds - state.currentSecond
+                val timeDisplay = TimeUtils.formatTimeWithHours(remainingSeconds)
+                "Paused • $timeDisplay remaining"
+            }
+            state.timerMode == TimerMode.CLIMBING -> {
+                val phase = if (state.isHolding) "HOLD" else "REST"
+                val repInfo = "Rep ${state.currentRepetition + 1}/${state.totalRepetitions}"
+                val repetitionSeconds = state.holdSeconds + state.restSeconds
+                val phaseTime = if (state.isHolding) {
+                    state.holdSeconds - state.secondInRep
+                } else {
+                    repetitionSeconds - state.secondInRep
+                }
+                "$repInfo • $phase ${phaseTime}s"
+            }
+            else -> {
+                val remainingSeconds = state.totalSeconds - state.currentSecond
+                val timeDisplay = TimeUtils.formatTimeWithHours(remainingSeconds)
+                val minuteInfo = "Minute ${state.currentMinute + 1}/${state.totalMinutes}"
+                "$minuteInfo • $timeDisplay remaining"
+            }
         }
 
         return NotificationCompat.Builder(this, WorkoutTimerApp.TIMER_CHANNEL_ID)

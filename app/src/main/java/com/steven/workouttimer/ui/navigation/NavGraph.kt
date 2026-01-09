@@ -12,7 +12,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -56,6 +58,7 @@ fun NavGraph(
     val repository = app.container.timerRepository
     val themePreferences = app.container.themePreferences
     val currentThemeMode by themePreferences.themeMode.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
 
     // Global timer service binding for showing running timer on home screen
     var globalTimerService by remember { mutableStateOf<TimerService?>(null) }
@@ -117,6 +120,13 @@ fun NavGraph(
                 },
                 onRunningTimerStop = {
                     globalTimerService?.stopTimer()
+                },
+                onRunningTimerDelete = {
+                    val timerId = runningTimerState.timerId
+                    globalTimerService?.stopTimer()
+                    coroutineScope.launch {
+                        repository.deleteTimerById(timerId)
+                    }
                 },
                 onCreateTimer = {
                     navController.navigate(Screen.CreateTimer.createRoute())

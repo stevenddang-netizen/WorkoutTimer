@@ -28,9 +28,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.steven.workouttimer.ui.components.ControlButtons
 import com.steven.workouttimer.ui.components.TimerDisplay
+import com.steven.workouttimer.ui.theme.GlassSurface
+import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,6 +45,7 @@ fun TimerScreen(
     val timerState by viewModel.timerState.collectAsState()
     val timer by viewModel.timer.collectAsState()
     var showStopConfirmation by remember { mutableStateOf(false) }
+    val isGlassmorphic = LocalIsGlassmorphic.current
 
     // Navigate back when timer completes
     LaunchedEffect(timerState.isComplete) {
@@ -51,6 +55,7 @@ fun TimerScreen(
     }
 
     Scaffold(
+        containerColor = if (isGlassmorphic) Color.Transparent else MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { Text(timer?.name ?: "Timer") },
@@ -64,8 +69,9 @@ fun TimerScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    containerColor = if (isGlassmorphic) GlassSurface else MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer,
+                    navigationIconContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer
                 )
             )
         }
@@ -85,7 +91,16 @@ fun TimerScreen(
                     currentSecond = timerState.currentSecond,
                     totalSeconds = timerState.totalSeconds,
                     currentMinute = timerState.currentMinute,
-                    totalMinutes = timerState.totalMinutes
+                    totalMinutes = timerState.totalMinutes,
+                    isInInitialCountdown = timerState.isInInitialCountdown,
+                    initialCountdownRemaining = timerState.initialCountdownRemaining,
+                    timerMode = timerState.timerMode,
+                    currentRepetition = timerState.currentRepetition,
+                    totalRepetitions = timerState.totalRepetitions,
+                    secondInRep = timerState.secondInRep,
+                    holdSeconds = timerState.holdSeconds,
+                    restSeconds = timerState.restSeconds,
+                    isHolding = timerState.isHolding
                 )
 
                 Spacer(modifier = Modifier.height(48.dp))

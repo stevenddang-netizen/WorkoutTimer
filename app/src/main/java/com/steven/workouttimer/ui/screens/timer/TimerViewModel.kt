@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.steven.workouttimer.data.db.AudioType
 import com.steven.workouttimer.data.db.TimerEntity
+import com.steven.workouttimer.data.db.TimerMode
 import com.steven.workouttimer.data.repository.TimerRepository
 import com.steven.workouttimer.service.TimerService
 import com.steven.workouttimer.service.TimerState
@@ -53,10 +54,15 @@ class TimerViewModel(
                 timerService?.startTimer(
                     timerId = currentTimer.id,
                     timerName = currentTimer.name,
+                    timerMode = TimerMode.valueOf(currentTimer.timerMode),
                     totalMinutes = currentTimer.totalMinutes,
                     audioEnabled = currentTimer.audioEnabled,
                     audioType = AudioType.valueOf(currentTimer.audioType),
-                    countdownSeconds = currentTimer.countdownSeconds
+                    countdownSeconds = currentTimer.countdownSeconds,
+                    initialCountdownSeconds = currentTimer.initialCountdownSeconds,
+                    holdSeconds = currentTimer.holdSeconds,
+                    restSeconds = currentTimer.restSeconds,
+                    totalRepetitions = currentTimer.totalRepetitions
                 )
             }
         }

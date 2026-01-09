@@ -31,12 +31,12 @@ public final class AppDatabase_Impl extends AppDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(3) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `timers` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `totalMinutes` INTEGER NOT NULL, `audioEnabled` INTEGER NOT NULL, `audioType` TEXT NOT NULL, `countdownSeconds` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `timers` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `timerMode` TEXT NOT NULL, `totalMinutes` INTEGER NOT NULL, `audioEnabled` INTEGER NOT NULL, `audioType` TEXT NOT NULL, `countdownSeconds` INTEGER NOT NULL, `initialCountdownSeconds` INTEGER NOT NULL, `holdSeconds` INTEGER NOT NULL, `restSeconds` INTEGER NOT NULL, `totalRepetitions` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '14356bf7729651b5dddc42334cc8819c')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6fe869db12f26b497f1422265724e9a8')");
       }
 
       @Override
@@ -85,13 +85,18 @@ public final class AppDatabase_Impl extends AppDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsTimers = new HashMap<String, TableInfo.Column>(7);
+        final HashMap<String, TableInfo.Column> _columnsTimers = new HashMap<String, TableInfo.Column>(12);
         _columnsTimers.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTimers.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTimers.put("timerMode", new TableInfo.Column("timerMode", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTimers.put("totalMinutes", new TableInfo.Column("totalMinutes", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTimers.put("audioEnabled", new TableInfo.Column("audioEnabled", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTimers.put("audioType", new TableInfo.Column("audioType", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTimers.put("countdownSeconds", new TableInfo.Column("countdownSeconds", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTimers.put("initialCountdownSeconds", new TableInfo.Column("initialCountdownSeconds", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTimers.put("holdSeconds", new TableInfo.Column("holdSeconds", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTimers.put("restSeconds", new TableInfo.Column("restSeconds", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTimers.put("totalRepetitions", new TableInfo.Column("totalRepetitions", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTimers.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysTimers = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesTimers = new HashSet<TableInfo.Index>(0);
@@ -104,7 +109,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "14356bf7729651b5dddc42334cc8819c", "e96992b709f3f20df6e2521fc356d02c");
+    }, "6fe869db12f26b497f1422265724e9a8", "d85a64cbffb3ef768c1539fb7bbabd09");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

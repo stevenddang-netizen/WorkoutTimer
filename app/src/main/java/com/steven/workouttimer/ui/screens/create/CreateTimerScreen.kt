@@ -13,7 +13,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,10 +32,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.steven.workouttimer.data.db.AudioType
+import com.steven.workouttimer.data.db.TimerMode
+import com.steven.workouttimer.ui.theme.GlassSurface
+import com.steven.workouttimer.ui.theme.LocalIsGlassmorphic
 import com.steven.workouttimer.util.TimeUtils
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,6 +53,9 @@ fun CreateTimerScreen(
     isEditing: Boolean = false
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isGlassmorphic = LocalIsGlassmorphic.current
+    val textColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onBackground
+    val subtextColor = if (isGlassmorphic) Color.White.copy(alpha = 0.5f) else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
 
     LaunchedEffect(uiState.isSaved) {
         if (uiState.isSaved) {
@@ -51,6 +64,7 @@ fun CreateTimerScreen(
     }
 
     Scaffold(
+        containerColor = if (isGlassmorphic) Color.Transparent else MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { Text(if (isEditing) "Edit Timer" else "Create Timer") },
@@ -71,8 +85,10 @@ fun CreateTimerScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    containerColor = if (isGlassmorphic) GlassSurface else MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer,
+                    navigationIconContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer,
+                    actionIconContentColor = if (isGlassmorphic) Color.White else MaterialTheme.colorScheme.onPrimaryContainer
                 )
             )
         }
@@ -85,57 +101,306 @@ fun CreateTimerScreen(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
+            // Timer Mode Selection
+            Column {
+                Text(
+                    text = "Timer Mode",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = textColor
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+
+                var modeExpanded by remember { mutableStateOf(false) }
+
+                ExposedDropdownMenuBox(
+                    expanded = modeExpanded,
+                    onExpandedChange = { modeExpanded = !modeExpanded }
+                ) {
+                    OutlinedTextField(
+                        value = when (uiState.timerMode) {
+                            TimerMode.WEIGHTLIFT -> "Weightlift Mode"
+                            TimerMode.CLIMBING -> "Climbing Mode"
+                        },
+                        onValueChange = {},
+                        readOnly = true,
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = modeExpanded) },
+                        modifier = Modifier
+                            .menuAnchor()
+                            .fillMaxWidth()
+                    )
+                    ExposedDropdownMenu(
+                        expanded = modeExpanded,
+                        onDismissRequest = { modeExpanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Weightlift Mode") },
+                            onClick = {
+                                viewModel.updateTimerMode(TimerMode.WEIGHTLIFT)
+                                modeExpanded = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Climbing Mode") },
+                            onClick = {
+                                viewModel.updateTimerMode(TimerMode.CLIMBING)
+                                modeExpanded = false
+                            }
+                        )
+                    }
+                }
+            }
+
             // Timer Name
             OutlinedTextField(
                 value = uiState.name,
                 onValueChange = { viewModel.updateName(it) },
                 label = { Text("Timer Name") },
-                placeholder = { Text("e.g., Morning EMOM") },
+                placeholder = {
+                    Text(
+                        when (uiState.timerMode) {
+                            TimerMode.WEIGHTLIFT -> "e.g., Morning EMOM"
+                            TimerMode.CLIMBING -> "e.g., Hangboard Session"
+                        }
+                    )
+                },
                 isError = uiState.nameError != null,
                 supportingText = uiState.nameError?.let { { Text(it) } },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Duration
-            Column {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+            // Mode-specific options
+            if (uiState.timerMode == TimerMode.WEIGHTLIFT) {
+                // Duration (Weightlift mode)
+                Column {
                     Text(
                         text = "Duration",
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Text(
-                        text = TimeUtils.formatMinutes(uiState.totalMinutes),
                         style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.primary
+                        color = textColor
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    var expanded by remember { mutableStateOf(false) }
+                    val minuteOptions = (2..120).toList()
+
+                    ExposedDropdownMenuBox(
+                        expanded = expanded,
+                        onExpandedChange = { expanded = !expanded }
+                    ) {
+                        OutlinedTextField(
+                            value = TimeUtils.formatMinutes(uiState.totalMinutes),
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                        )
+                        ExposedDropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false }
+                        ) {
+                            minuteOptions.forEach { minutes ->
+                                DropdownMenuItem(
+                                    text = { Text(TimeUtils.formatMinutes(minutes)) },
+                                    onClick = {
+                                        viewModel.updateTotalMinutes(minutes)
+                                        expanded = false
+                                    }
+                                )
+                            }
+                        }
+                    }
                 }
-                Spacer(modifier = Modifier.height(8.dp))
-                Slider(
-                    value = uiState.totalMinutes.toFloat(),
-                    onValueChange = { viewModel.updateTotalMinutes(it.toInt()) },
-                    valueRange = 5f..120f,
-                    steps = 114,
-                    modifier = Modifier.fillMaxWidth()
+            } else {
+                // Climbing mode options
+
+                // Hold Length
+                Column {
+                    Text(
+                        text = "Hold Length",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = textColor
+                    )
+                    Text(
+                        text = "How long to hold each rep",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = subtextColor
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    var holdExpanded by remember { mutableStateOf(false) }
+                    val holdOptions = (1..60).toList()
+
+                    ExposedDropdownMenuBox(
+                        expanded = holdExpanded,
+                        onExpandedChange = { holdExpanded = !holdExpanded }
+                    ) {
+                        OutlinedTextField(
+                            value = "${uiState.holdSeconds} seconds",
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = holdExpanded) },
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                        )
+                        ExposedDropdownMenu(
+                            expanded = holdExpanded,
+                            onDismissRequest = { holdExpanded = false }
+                        ) {
+                            holdOptions.forEach { seconds ->
+                                DropdownMenuItem(
+                                    text = { Text("$seconds seconds") },
+                                    onClick = {
+                                        viewModel.updateHoldSeconds(seconds)
+                                        holdExpanded = false
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Break Length
+                Column {
+                    Text(
+                        text = "Break Length",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = textColor
+                    )
+                    Text(
+                        text = "Rest time between holds",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = subtextColor
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    var restExpanded by remember { mutableStateOf(false) }
+                    val restOptions = (1..60).toList()
+
+                    ExposedDropdownMenuBox(
+                        expanded = restExpanded,
+                        onExpandedChange = { restExpanded = !restExpanded }
+                    ) {
+                        OutlinedTextField(
+                            value = "${uiState.restSeconds} seconds",
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = restExpanded) },
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                        )
+                        ExposedDropdownMenu(
+                            expanded = restExpanded,
+                            onDismissRequest = { restExpanded = false }
+                        ) {
+                            restOptions.forEach { seconds ->
+                                DropdownMenuItem(
+                                    text = { Text("$seconds seconds") },
+                                    onClick = {
+                                        viewModel.updateRestSeconds(seconds)
+                                        restExpanded = false
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Total Repetitions
+                Column {
+                    Text(
+                        text = "Total Repetitions",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = textColor
+                    )
+                    Text(
+                        text = "Number of reps to complete",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = subtextColor
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    var repsExpanded by remember { mutableStateOf(false) }
+                    val repsOptions = (1..50).toList()
+
+                    ExposedDropdownMenuBox(
+                        expanded = repsExpanded,
+                        onExpandedChange = { repsExpanded = !repsExpanded }
+                    ) {
+                        OutlinedTextField(
+                            value = "${uiState.totalRepetitions} reps",
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = repsExpanded) },
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                        )
+                        ExposedDropdownMenu(
+                            expanded = repsExpanded,
+                            onDismissRequest = { repsExpanded = false }
+                        ) {
+                            repsOptions.forEach { reps ->
+                                DropdownMenuItem(
+                                    text = { Text("$reps reps") },
+                                    onClick = {
+                                        viewModel.updateTotalRepetitions(reps)
+                                        repsExpanded = false
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Initial Countdown
+            Column {
+                Text(
+                    text = "Initial Countdown",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = textColor
                 )
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                Text(
+                    text = "Countdown before workout starts",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = subtextColor
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+
+                var initialCountdownExpanded by remember { mutableStateOf(false) }
+                val initialCountdownOptions = listOf(0) + (2..30).toList()
+
+                ExposedDropdownMenuBox(
+                    expanded = initialCountdownExpanded,
+                    onExpandedChange = { initialCountdownExpanded = !initialCountdownExpanded }
                 ) {
-                    Text(
-                        text = "5 min",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                    OutlinedTextField(
+                        value = if (uiState.initialCountdownSeconds == 0) "None" else "${uiState.initialCountdownSeconds} seconds",
+                        onValueChange = {},
+                        readOnly = true,
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = initialCountdownExpanded) },
+                        modifier = Modifier
+                            .menuAnchor()
+                            .fillMaxWidth()
                     )
-                    Text(
-                        text = "120 min",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
-                    )
+                    ExposedDropdownMenu(
+                        expanded = initialCountdownExpanded,
+                        onDismissRequest = { initialCountdownExpanded = false }
+                    ) {
+                        initialCountdownOptions.forEach { seconds ->
+                            DropdownMenuItem(
+                                text = { Text(if (seconds == 0) "None" else "$seconds seconds") },
+                                onClick = {
+                                    viewModel.updateInitialCountdownSeconds(seconds)
+                                    initialCountdownExpanded = false
+                                }
+                            )
+                        }
+                    }
                 }
             }
 
@@ -148,12 +413,16 @@ fun CreateTimerScreen(
                 Column {
                     Text(
                         text = "Audio Notification",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        color = textColor
                     )
                     Text(
-                        text = "Play sound before each minute",
+                        text = when (uiState.timerMode) {
+                            TimerMode.WEIGHTLIFT -> "Play sound before each minute"
+                            TimerMode.CLIMBING -> "Play sound before each rep"
+                        },
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                        color = subtextColor
                     )
                 }
                 Switch(
@@ -167,7 +436,8 @@ fun CreateTimerScreen(
                 Column {
                     Text(
                         text = "Notification Type",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        color = textColor
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Row(
@@ -195,12 +465,13 @@ fun CreateTimerScreen(
                     ) {
                         Text(
                             text = "Start Notification At",
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.titleMedium,
+                            color = textColor
                         )
                         Text(
                             text = "${uiState.countdownSeconds} seconds before",
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.primary
+                            color = if (isGlassmorphic) Color(0xFF7ECFA0) else MaterialTheme.colorScheme.primary
                         )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
@@ -218,12 +489,12 @@ fun CreateTimerScreen(
                         Text(
                             text = "1 sec",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                            color = subtextColor
                         )
                         Text(
                             text = "10 sec",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                            color = subtextColor
                         )
                     }
                 }
@@ -233,9 +504,12 @@ fun CreateTimerScreen(
 
             // Info text
             Text(
-                text = "EMOM (Every Minute On the Minute): A workout where you start a new exercise at the beginning of each minute. This timer will track your progress and notify you before each new minute begins.",
+                text = when (uiState.timerMode) {
+                    TimerMode.WEIGHTLIFT -> "EMOM (Every Minute On the Minute): A workout where you start a new exercise at the beginning of each minute. This timer will track your progress and notify you before each new minute begins."
+                    TimerMode.CLIMBING -> "Climbing Mode: Designed for hangboard and climbing training. Each rep consists of a hold period followed by rest. The timer will notify you before each new rep begins."
+                },
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                color = subtextColor
             )
         }
     }

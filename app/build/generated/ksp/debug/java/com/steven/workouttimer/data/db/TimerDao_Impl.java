@@ -48,7 +48,7 @@ public final class TimerDao_Impl implements TimerDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `timers` (`id`,`name`,`totalMinutes`,`audioEnabled`,`audioType`,`countdownSeconds`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `timers` (`id`,`name`,`timerMode`,`totalMinutes`,`audioEnabled`,`audioType`,`countdownSeconds`,`initialCountdownSeconds`,`holdSeconds`,`restSeconds`,`totalRepetitions`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -56,12 +56,17 @@ public final class TimerDao_Impl implements TimerDao {
           @NonNull final TimerEntity entity) {
         statement.bindLong(1, entity.getId());
         statement.bindString(2, entity.getName());
-        statement.bindLong(3, entity.getTotalMinutes());
+        statement.bindString(3, entity.getTimerMode());
+        statement.bindLong(4, entity.getTotalMinutes());
         final int _tmp = entity.getAudioEnabled() ? 1 : 0;
-        statement.bindLong(4, _tmp);
-        statement.bindString(5, entity.getAudioType());
-        statement.bindLong(6, entity.getCountdownSeconds());
-        statement.bindLong(7, entity.getCreatedAt());
+        statement.bindLong(5, _tmp);
+        statement.bindString(6, entity.getAudioType());
+        statement.bindLong(7, entity.getCountdownSeconds());
+        statement.bindLong(8, entity.getInitialCountdownSeconds());
+        statement.bindLong(9, entity.getHoldSeconds());
+        statement.bindLong(10, entity.getRestSeconds());
+        statement.bindLong(11, entity.getTotalRepetitions());
+        statement.bindLong(12, entity.getCreatedAt());
       }
     };
     this.__deletionAdapterOfTimerEntity = new EntityDeletionOrUpdateAdapter<TimerEntity>(__db) {
@@ -81,7 +86,7 @@ public final class TimerDao_Impl implements TimerDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `timers` SET `id` = ?,`name` = ?,`totalMinutes` = ?,`audioEnabled` = ?,`audioType` = ?,`countdownSeconds` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `timers` SET `id` = ?,`name` = ?,`timerMode` = ?,`totalMinutes` = ?,`audioEnabled` = ?,`audioType` = ?,`countdownSeconds` = ?,`initialCountdownSeconds` = ?,`holdSeconds` = ?,`restSeconds` = ?,`totalRepetitions` = ?,`createdAt` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -89,13 +94,18 @@ public final class TimerDao_Impl implements TimerDao {
           @NonNull final TimerEntity entity) {
         statement.bindLong(1, entity.getId());
         statement.bindString(2, entity.getName());
-        statement.bindLong(3, entity.getTotalMinutes());
+        statement.bindString(3, entity.getTimerMode());
+        statement.bindLong(4, entity.getTotalMinutes());
         final int _tmp = entity.getAudioEnabled() ? 1 : 0;
-        statement.bindLong(4, _tmp);
-        statement.bindString(5, entity.getAudioType());
-        statement.bindLong(6, entity.getCountdownSeconds());
-        statement.bindLong(7, entity.getCreatedAt());
-        statement.bindLong(8, entity.getId());
+        statement.bindLong(5, _tmp);
+        statement.bindString(6, entity.getAudioType());
+        statement.bindLong(7, entity.getCountdownSeconds());
+        statement.bindLong(8, entity.getInitialCountdownSeconds());
+        statement.bindLong(9, entity.getHoldSeconds());
+        statement.bindLong(10, entity.getRestSeconds());
+        statement.bindLong(11, entity.getTotalRepetitions());
+        statement.bindLong(12, entity.getCreatedAt());
+        statement.bindLong(13, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteTimerById = new SharedSQLiteStatement(__db) {
@@ -199,10 +209,15 @@ public final class TimerDao_Impl implements TimerDao {
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
           final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+          final int _cursorIndexOfTimerMode = CursorUtil.getColumnIndexOrThrow(_cursor, "timerMode");
           final int _cursorIndexOfTotalMinutes = CursorUtil.getColumnIndexOrThrow(_cursor, "totalMinutes");
           final int _cursorIndexOfAudioEnabled = CursorUtil.getColumnIndexOrThrow(_cursor, "audioEnabled");
           final int _cursorIndexOfAudioType = CursorUtil.getColumnIndexOrThrow(_cursor, "audioType");
           final int _cursorIndexOfCountdownSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "countdownSeconds");
+          final int _cursorIndexOfInitialCountdownSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "initialCountdownSeconds");
+          final int _cursorIndexOfHoldSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "holdSeconds");
+          final int _cursorIndexOfRestSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "restSeconds");
+          final int _cursorIndexOfTotalRepetitions = CursorUtil.getColumnIndexOrThrow(_cursor, "totalRepetitions");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final List<TimerEntity> _result = new ArrayList<TimerEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
@@ -211,6 +226,8 @@ public final class TimerDao_Impl implements TimerDao {
             _tmpId = _cursor.getLong(_cursorIndexOfId);
             final String _tmpName;
             _tmpName = _cursor.getString(_cursorIndexOfName);
+            final String _tmpTimerMode;
+            _tmpTimerMode = _cursor.getString(_cursorIndexOfTimerMode);
             final int _tmpTotalMinutes;
             _tmpTotalMinutes = _cursor.getInt(_cursorIndexOfTotalMinutes);
             final boolean _tmpAudioEnabled;
@@ -221,9 +238,17 @@ public final class TimerDao_Impl implements TimerDao {
             _tmpAudioType = _cursor.getString(_cursorIndexOfAudioType);
             final int _tmpCountdownSeconds;
             _tmpCountdownSeconds = _cursor.getInt(_cursorIndexOfCountdownSeconds);
+            final int _tmpInitialCountdownSeconds;
+            _tmpInitialCountdownSeconds = _cursor.getInt(_cursorIndexOfInitialCountdownSeconds);
+            final int _tmpHoldSeconds;
+            _tmpHoldSeconds = _cursor.getInt(_cursorIndexOfHoldSeconds);
+            final int _tmpRestSeconds;
+            _tmpRestSeconds = _cursor.getInt(_cursorIndexOfRestSeconds);
+            final int _tmpTotalRepetitions;
+            _tmpTotalRepetitions = _cursor.getInt(_cursorIndexOfTotalRepetitions);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _item = new TimerEntity(_tmpId,_tmpName,_tmpTotalMinutes,_tmpAudioEnabled,_tmpAudioType,_tmpCountdownSeconds,_tmpCreatedAt);
+            _item = new TimerEntity(_tmpId,_tmpName,_tmpTimerMode,_tmpTotalMinutes,_tmpAudioEnabled,_tmpAudioType,_tmpCountdownSeconds,_tmpInitialCountdownSeconds,_tmpHoldSeconds,_tmpRestSeconds,_tmpTotalRepetitions,_tmpCreatedAt);
             _result.add(_item);
           }
           return _result;
@@ -254,10 +279,15 @@ public final class TimerDao_Impl implements TimerDao {
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
           final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+          final int _cursorIndexOfTimerMode = CursorUtil.getColumnIndexOrThrow(_cursor, "timerMode");
           final int _cursorIndexOfTotalMinutes = CursorUtil.getColumnIndexOrThrow(_cursor, "totalMinutes");
           final int _cursorIndexOfAudioEnabled = CursorUtil.getColumnIndexOrThrow(_cursor, "audioEnabled");
           final int _cursorIndexOfAudioType = CursorUtil.getColumnIndexOrThrow(_cursor, "audioType");
           final int _cursorIndexOfCountdownSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "countdownSeconds");
+          final int _cursorIndexOfInitialCountdownSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "initialCountdownSeconds");
+          final int _cursorIndexOfHoldSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "holdSeconds");
+          final int _cursorIndexOfRestSeconds = CursorUtil.getColumnIndexOrThrow(_cursor, "restSeconds");
+          final int _cursorIndexOfTotalRepetitions = CursorUtil.getColumnIndexOrThrow(_cursor, "totalRepetitions");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final TimerEntity _result;
           if (_cursor.moveToFirst()) {
@@ -265,6 +295,8 @@ public final class TimerDao_Impl implements TimerDao {
             _tmpId = _cursor.getLong(_cursorIndexOfId);
             final String _tmpName;
             _tmpName = _cursor.getString(_cursorIndexOfName);
+            final String _tmpTimerMode;
+            _tmpTimerMode = _cursor.getString(_cursorIndexOfTimerMode);
             final int _tmpTotalMinutes;
             _tmpTotalMinutes = _cursor.getInt(_cursorIndexOfTotalMinutes);
             final boolean _tmpAudioEnabled;
@@ -275,9 +307,17 @@ public final class TimerDao_Impl implements TimerDao {
             _tmpAudioType = _cursor.getString(_cursorIndexOfAudioType);
             final int _tmpCountdownSeconds;
             _tmpCountdownSeconds = _cursor.getInt(_cursorIndexOfCountdownSeconds);
+            final int _tmpInitialCountdownSeconds;
+            _tmpInitialCountdownSeconds = _cursor.getInt(_cursorIndexOfInitialCountdownSeconds);
+            final int _tmpHoldSeconds;
+            _tmpHoldSeconds = _cursor.getInt(_cursorIndexOfHoldSeconds);
+            final int _tmpRestSeconds;
+            _tmpRestSeconds = _cursor.getInt(_cursorIndexOfRestSeconds);
+            final int _tmpTotalRepetitions;
+            _tmpTotalRepetitions = _cursor.getInt(_cursorIndexOfTotalRepetitions);
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-            _result = new TimerEntity(_tmpId,_tmpName,_tmpTotalMinutes,_tmpAudioEnabled,_tmpAudioType,_tmpCountdownSeconds,_tmpCreatedAt);
+            _result = new TimerEntity(_tmpId,_tmpName,_tmpTimerMode,_tmpTotalMinutes,_tmpAudioEnabled,_tmpAudioType,_tmpCountdownSeconds,_tmpInitialCountdownSeconds,_tmpHoldSeconds,_tmpRestSeconds,_tmpTotalRepetitions,_tmpCreatedAt);
           } else {
             _result = null;
           }
